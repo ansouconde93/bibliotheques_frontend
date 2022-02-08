@@ -1,0 +1,119 @@
+                        
+<div *ngIf="pasVal==1" class="alert alert-primary error-control-user">
+    Aucun membre n'est trouvé !
+</div>                  
+<div *ngIf="pasVal==2" class="alert alert-primary error-control-user">
+    Erreur de suppression !
+</div>
+<div *ngIf="membresRoles != null" class="form-group row">  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th> 
+                <th>Section</th> 
+                <th>CIN ou matricule</th> 
+                <th>Téléphone</th>
+                <th>Email</th>
+                <th>Role du membre</th>             
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let user of membresRoles">
+            <td>{{user.appUser.nom}}</td>
+            <td>{{user.appUser.prenom}}</td>
+            <td>{{user.appUser.section}}</td>
+            <td>{{user.appUser.matricule}}</td>
+            <td>{{user.appUser.telephone}}</td>
+            <td>{{user.appUser.email}}</td>
+            <td>
+                <table class="table">
+                    <thead>
+                        <th>Role</th>
+                    </thead>
+                    <tr *ngFor="let role of user.rolesName">
+                         <td> {{role}} </td>
+                    </tr>
+                </table> 
+            </td>
+            <td>
+                <button type="button" class="btn btn-success"  (click) ="modifier(user)">modifier</button>
+            </td>
+            <td>         
+                <button type="button" class="btn btn-danger" (click) ="supprimer(user.appUser.id)">Supprimer</button>
+            </td>
+        </tr>
+    </table>
+    
+    <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+        Le membre est modifié avec succès
+    </div>
+    <div *ngIf="modif==1" class="row">
+        <div class="col-lg-12 bg_color">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Modification du membre</h1>
+                </div>
+                <form class="user" #userForm='ngForm'>                   
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                            value="user.appUser.nom" name="nom" [(ngModel)] ="user.appUser.nom">
+                        </div>                                 
+
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-user" id="exampleLastName"
+                            value="user.appUser.prenom" name="prenom" [(ngModel)] ="user.appUser.prenom">
+                                
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" id="section"
+                            value="user.appUser.section" name="section" [(ngModel)] ="user.appUser.section">                                            
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-user" id="matricule"
+                            value="user.appUser.matricule" name="matricule" [(ngModel)] ="user.appUser.matricule">                            
+                        </div>
+                    </div>                                
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="tel" class="form-control form-control-user" id="telephone"
+                            value="user.appUser.telephone"
+                                name="telephone" [(ngModel)] ="user.appUser.telephone">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                            value="user.appUser.email"
+                            name="email" [(ngModel)] ="user.appUser.email">
+                        </div>
+                    </div>
+
+                    <div class="alert alert-secondary error-control-user">
+                        Modifier le(s) role(s() de cet utilisateur.
+                    </div>                        
+                    <div class="form-group row">                           
+                         <table class="table">
+                               <tr *ngFor="let role of user.rolesName">
+                                    <td>
+                                        <input type="checkbox" [value]= "role" 
+                                            (change) = "onChangeAutority($event)">
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>{{role}}</td>
+                               </tr>
+                           </table>     
+                    </div>
+                    <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                        Modifier
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

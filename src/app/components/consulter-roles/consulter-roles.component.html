@@ -1,0 +1,101 @@
+                        
+<div *ngIf="pasVal==1" class="alert alert-primary error-control-user">
+    Aucun roles n'est trouvé !
+</div>                  
+<div *ngIf="pasVal==2" class="alert alert-primary error-control-user">
+    Erreur de suppression !
+</div>
+<div *ngIf="roles != null" class="form-group row">  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom role</th>
+                <th>Etat</th>                
+                <th>les droits d'accès du role</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let role of roles">
+            <td>{{role.role}}</td>
+            <td *ngIf="role.susppendu">
+                <i class="alert alert-warning"> Désactivé</i>
+            </td>
+            <td *ngIf="!role.susppendu">
+                <i class="alert alert-info">Activé</i>
+            </td>
+            <td>
+                <table class="table">                        
+                    <thead>
+                        <tr>
+                            <th>Nom droit d'accès</th>
+                            <th>Etat</th>     
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let autority of role.autorisations">
+                        <td>{{autority.autority}}</td>
+                        <td *ngIf="autority.susppendu">
+                            <i class="alert alert-warning"> Désactivé</i>
+                        </td>
+                        <td *ngIf="!autority.susppendu">
+                            <i class="alert alert-info">Activé</i>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <button type="button" class="btn btn-success"  (click) ="modifier(role)">modifier</button>
+            </td>
+            <td>         
+                <button type="button" class="btn btn-danger" (click) ="supprimer(role.id)">Supprimer</button>
+            </td>
+        </tr>
+    </table>
+    
+    <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+        Le role est modifié avec succès
+    </div>
+    <div *ngIf="modif==1" class="row">
+        <div class="col-lg-12 bg_color">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Modification du role</h1>
+                </div>
+                <form class="user" #userForm='ngForm'>
+                    <div class="form-group row">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                         name="role" [(ngModel)] ="role.role" 
+                                value="{{role.role}}">
+                        
+                        <input type="radio" class="form-control form-control-user" id="exampleFirstName"
+                                name="auto" value = "TRUE" [(ngModel)]="actifDesactif">Désactiver
+                              
+                        <input type="radio" class="form-control form-control-user" id="exampleFirstName"
+                                name="auto" value = "FALSE" [(ngModel)]="actifDesactif"> Activer 
+                    </div>
+
+                    <div class="alert alert-light error-control-user">
+                        Modifier le(s) droit(s) d'accès de ce role.
+                    </div>
+                    <div class="form-group row"> 
+                           <table class="table ">
+                               <tr *ngFor="let autority of role.autorisations">
+                                    <td>
+                                        <input type="checkbox" [value]= "autority.id" 
+                                            (change) = "onChangeAutority($event)">
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>{{autority.autority}}</td>
+                               </tr>
+                           </table>     
+                    </div>
+
+                    <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                        Modifier
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

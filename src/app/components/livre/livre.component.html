@@ -1,0 +1,70 @@
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12 bg_color">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Ajouter un livre</h1>
+                    </div>
+                    <form class="user" #userForm='ngForm'>
+                        <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+                            Le livre est ajouté avec succès.
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="Code" name="code" [(ngModel)] ="livre.code" 
+                                    #nom ='ngModel' required><br>
+                                <div *ngIf="livre.code==null && actifError " class="alert alert-danger error-control-user">
+                                    Code est obligatoire
+                                </div>
+                            </div>                                 
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                    placeholder="titre" name="titre" [(ngModel)] ="livre.titre" required>
+                                    <br>
+                                <div *ngIf="livre.titre==null && actifError " class="alert alert-danger error-control-user">
+                                    Titre est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control form-control-user" id="nombrePage"
+                                    placeholder="Nombre de page" name="nombrePage" [(ngModel)] ="livre.nombrePage" required>
+                                    <br>
+                                <div *ngIf="livre.nombrePage==null && actifError " class="alert alert-danger error-control-user">
+                                    Nombre de page est obligatoire
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="number" class="form-control form-control-user" id="nombreexemplaire"
+                                    placeholder="nombre d'exemplaire" name="nombreexemplaire" [(ngModel)] ="livre.nombreexemplaire" required>                                            
+                            </div>
+                        </div>                                
+                        <div class="form-group row">
+                            <input type="date" class="form-control form-control-user" id="dateedition"
+                            placeholder="Date edition"
+                            name="livre.dateedition" [(ngModel)] ="livre.dateedition" required>
+                            <br>
+                            <div *ngIf="livre.dateedition==null && actifError " class="alert alert-danger error-control-user">
+                                Date d'édition est obligatoire
+                            </div>
+                        </div>
+
+                        <!--
+                            Metre les balise de selection du type et de l'état du livre ici
+                        -->
+                        <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                            Ajouter
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

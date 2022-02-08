@@ -1,0 +1,31 @@
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12 bg_color">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Ajouter une autorisation</h1>
+                    </div>
+                    <form class="user" #userForm='ngForm'>
+                        <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+                            Le droit d'accès est ajouté avec succès
+                        </div>
+                        <div class="form-group row">
+                            <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="autorisation" name="autority" [(ngModel)] ="autority.autority" 
+                                    #nom ='ngModel' required>
+                                    
+                        </div>
+                        <div *ngIf="autority.autority==null && actifError " class="alert alert-danger error-control-user">
+                            Définissez le droit d'accès
+                        </div>                           
+                        <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                            Ajouter
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

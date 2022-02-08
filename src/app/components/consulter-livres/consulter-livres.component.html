@@ -1,0 +1,71 @@
+                        
+<div *ngIf="pasVal==1" class="alert alert-primary error-control-user">
+    Aucun livre n'est trouvé !
+</div>                  
+<div *ngIf="pasVal==2" class="alert alert-primary error-control-user">
+    Erreur de suppression !
+</div>
+<div *ngIf="livres != null" class="form-group row">  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codes</th>
+                <th>Titre</th> 
+                <th>Nombre de Page</th> 
+                <th>Date d'édition</th> 
+                <th>Nombre exemplaire</th>             
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let livre of livres">
+            <td>{{livre.code}}</td>
+            <td>{{livre.titre}}</td>
+            <td>{{livre.nombrePage}}</td>
+            <td>{{livre.dateedition}}</td>
+            <td>{{livre.nombreexemplaire}}</td>
+            <td>
+                <button type="button" class="btn btn-success"  (click) ="modifier(livre)">modifier</button>
+            </td>
+            <td>         
+                <button type="button" class="btn btn-danger" (click) ="supprimer(livre.id)">Supprimer</button>
+            </td>
+        </tr>
+    </table>
+    
+    <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+        Le livre est modifié avec succès
+    </div>
+    <div *ngIf="modif==1" class="row">
+        <div class="col-lg-12 bg_color">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Modification du livre</h1>
+                </div>
+                <form class="user" #userForm='ngForm'>
+                    <div class="form-group row">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                         name="code" [(ngModel)] ="livre.code" value="{{livre.code}}">
+
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                            name="autority" [(ngModel)] ="livre.titre" value="{{livre.titre}}">
+
+                        <input type="number" class="form-control form-control-user" id="exampleFirstName"
+                            name="autority" [(ngModel)] ="livre.nombrePage" value="{{livre.nombrePage}}"> 
+
+                        <input type="number" class="form-control form-control-user" id="exampleFirstName"
+                            name="autority" [(ngModel)] ="livre.nombreexemplaire" value="{{livre.nombreexemplaire}}">
+                        Date édition
+                        <input type="date" class="form-control form-control-user" id="exampleFirstName"
+                            name="autority" [(ngModel)] ="livre.dateedition" value="{{livre.dateedition}}">
+                              
+                    <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                        Modifier
+                    </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

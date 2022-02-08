@@ -1,0 +1,65 @@
+                        
+<div *ngIf="pasVal==1" class="alert alert-primary error-control-user">
+    Aucun droits d'accès n'est trouvé !
+</div>                  
+<div *ngIf="pasVal==2" class="alert alert-primary error-control-user">
+    Erreur de suppression !
+</div>
+<div *ngIf="autorities != null" class="form-group row">  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom droit accès</th>
+                <th>Etat</th>                
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let autority of autorities">
+            <td>{{autority.autority}}</td>
+            <td *ngIf="autority.susppendu">
+                <i class="alert alert-warning"> Désactivé</i>
+            </td>
+            <td *ngIf="!autority.susppendu">
+                <i class="alert alert-info">Activé</i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-success"  (click) ="modifier(autority)">modifier</button>
+            </td>
+            <td>         
+                <button type="button" class="btn btn-danger" (click) ="supprimer(autority.id)">Supprimer</button>
+            </td>
+        </tr>
+    </table>
+    
+    <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+        Le droit d'accès est modifié avec succès
+    </div>
+    <div *ngIf="modif==1" class="row">
+        <div class="col-lg-12 bg_color">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Modifier l'autorisation</h1>
+                </div>
+                <form class="user" #userForm='ngForm'>
+                    <div class="form-group row">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                         name="autority" [(ngModel)] ="autority.autority" 
+                                value="{{autority.autority}}">
+                        
+                        <input type="radio" class="form-control form-control-user" id="exampleFirstName"
+                                name="auto" value = "TRUE" [(ngModel)]="actifDesactif">Désactiver
+                              
+                        <input type="radio" class="form-control form-control-user" id="exampleFirstName"
+                                name="auto" value = "FALSE" [(ngModel)]="actifDesactif"> Activer 
+                    </div>
+
+                    <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                        Modifier
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

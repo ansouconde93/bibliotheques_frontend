@@ -1,0 +1,108 @@
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12 bg_color">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Créer un compte !</h1>
+                            </div>
+                            <form class="user" #userForm='ngForm'>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="Nom" name="nom" [(ngModel)] ="user.appUser.nom" 
+                                            #nom ='ngModel' required><br>
+                                        <div *ngIf="user.appUser.nom==null && actifError " class="alert alert-danger error-control-user">
+                                            Nom est obligatoire
+                                        </div>
+                                    </div>                                 
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Prénom" name="prenom" [(ngModel)] ="user.appUser.prenom" required>
+                                            <br>
+                                        <div *ngIf="user.appUser.prenom==null && actifError " class="alert alert-danger error-control-user">
+                                            Prenom est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="section"
+                                            placeholder="section" name="section" [(ngModel)] ="user.appUser.section" required>                                            
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="matricule"
+                                            placeholder="Matricule"name="matricule" [(ngModel)] ="user.appUser.matricule" required>
+                                            <br>
+                                        <div *ngIf="user.appUser.matricule==null && actifError " class="alert alert-danger error-control-user">
+                                            Matricule est obligatoire
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input type="tel" class="form-control form-control-user" id="telephone"
+                                            placeholder="Téléphone"
+                                            name="telephone" [(ngModel)] ="user.appUser.telephone" required>
+                                            <br>
+                                        <div *ngIf="user.appUser.telephone==null && actifError " class="alert alert-danger error-control-user">
+                                            Numéro de téléphone est obligatoire
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Adresse email"
+                                        name="email" [(ngModel)] ="user.appUser.email" required>
+                                        <br>
+                                        <div *ngIf="user.appUser.email==null && (actifError || !emailFormat) " class="alert alert-danger error-control-user">
+                                            Email est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Mot de passe"
+                                            name="password" [(ngModel)] ="user.appUser.password" required>
+                                            <br>
+                                        <div *ngIf="user.appUser.password==null && actifError " class="alert alert-danger error-control-user">
+                                            Mot de passe est obligatoire
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Repeter le mot de passe"
+                                            name="repeatPassword" [(ngModel)] ="repeatPassword">
+                                            <br>
+                                        <div *ngIf="user.appUser.password !=repeatPassword && actifError " class="alert alert-danger error-control-user">
+                                            Confirmer bien le mot de passe
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-user btn-block" (click) ="enregistrerCompteEtAllerAAcceuil()">
+                                    Enregistrer le compte
+                                </a>
+                                <hr>
+                                <a href="#" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> S'inscrire avec Google
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" routerLink="/connexion" routerLinkActive="active">J'ai déjà un compte</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

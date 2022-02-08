@@ -1,0 +1,128 @@
+<button type="button" class="btn btn-success"  (click) ="emprunterRetour(0)">Emprunter</button>
+<button type="button" class="btn btn-danger"  (click) ="emprunterRetour(1)">Emprunter</button>           
+
+<div *ngIf="empruntRetour==0" class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12 bg_color">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Emprunter un livre</h1>
+                    </div>
+                    <form class="user" #userForm='ngForm'>
+                        <div *ngIf="echechRecherche==1" class="alert alert-danger error-control-user">
+                            Ce livre n'est pas disponible.
+                        </div>
+                        <div *ngIf="echechRecherche==2" class="alert alert-success error-control-user">
+                            Ce livre est emprunter avec succès.
+                        </div>
+                        <div *ngIf="echechRecherche==3" class="alert alert-success error-control-user">
+                            Ce livre ne peut pas être emprunter pourle moment.
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="CIN ou Matricule" name="cin" [(ngModel)] ="cin" 
+                                    #nom ='ngModel' required><br>
+                                <div *ngIf="cin==null && actifError " class="alert alert-danger error-control-user">
+                                    cin est obligatoire
+                                </div>
+                            </div>                                 
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                    placeholder="Code livre" name="code" [(ngModel)] ="code" required>
+                                    <br>
+                                <div *ngIf="code==null && actifError " class="alert alert-danger error-control-user">
+                                    Code est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                                               
+                        <div *ngIf="livre != null" class="form-group row">
+                               <table class="table">
+                                   <tr>
+                                        <td>
+                                            {{livre.titre}}
+                                        </td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success"  (click) ="emprunter()">Emprunter</button>
+            
+                                        </td>
+                                   </tr>
+                               </table>     
+                        </div>
+                        <a class="btn btn-primary btn-user btn-block" (click) ="rechercher()">
+                            Rechercher
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="empruntRetour==1" class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12 bg_color">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Retourner un livre</h1>
+                    </div>
+                    <form class="user" #userForm='ngForm'>
+                        <div *ngIf="echechRecherche==1" class="alert alert-danger error-control-user">
+                            Ce livre n'est pas disponible.
+                        </div>
+                        <div *ngIf="echechRecherche==2" class="alert alert-success error-control-user">
+                            Ce livre est retourné avec succès.
+                        </div>
+                        <div *ngIf="echechRecherche==3" class="alert alert-success error-control-user">
+                            Ce livre ne peut pas être retourner pourle moment.
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="CIN ou Matricule" name="cin" [(ngModel)] ="cin" 
+                                    #nom ='ngModel' required><br>
+                                <div *ngIf="cin==null && actifError " class="alert alert-danger error-control-user">
+                                    cin est obligatoire
+                                </div>
+                            </div>                                 
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                    placeholder="Code livre" name="code" [(ngModel)] ="code" required>
+                                    <br>
+                                <div *ngIf="code==null && actifError " class="alert alert-danger error-control-user">
+                                    Code est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                                               
+                        <div *ngIf="livre != null" class="form-group row">
+                               <table class="table">
+                                   <tr>
+                                        <td>
+                                            {{livre.titre}}
+                                        </td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success"  (click) ="rendreLivre()">Emprunter</button>
+            
+                                        </td>
+                                   </tr>
+                               </table>     
+                        </div>
+                        <a class="btn btn-primary btn-user btn-block" (click) ="rechercher()">
+                            Rechercher
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

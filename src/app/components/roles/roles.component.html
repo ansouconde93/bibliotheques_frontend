@@ -1,0 +1,52 @@
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12 bg_color">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Ajouter un role</h1>
+                    </div>
+                    <form class="user" #userForm='ngForm'>
+                        <div *ngIf="successAjout==1" class="alert alert-success error-control-user">
+                            Le role est ajouté avec succès.
+                        </div>
+                        <div class="form-group row">
+                            <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="role" name="role" [(ngModel)] ="role.role" 
+                                    #nom ='ngModel' required>
+                                    
+                        </div>
+                        <div *ngIf="role.role==null && actifError " class="alert alert-danger error-control-user">
+                            Définissez le role
+                        </div> 
+                        
+                        <!-- ajouter la balise select ici pour selectionner les autorisations à affecter à ce role-->
+                        <div *ngIf="autorities != null" class="alert alert-light error-control-user">
+                            Choisissez le(s) droit(s) d'accès de ce role.
+                        </div>
+                        <div *ngIf="autorities != null" class="form-group row">
+                           
+                            <div *ngIf="choisirAutority==1" class="alert alert-danger error-control-user">
+                                Choisissez au moins un droit d'accès pour ce role!
+                            </div> <br>
+                               <table class="table ">
+                                   <tr *ngFor="let autority of autorities">
+                                        <td>
+                                            <input type="checkbox" [value]= "autority.id" 
+                                                (change) = "onChangeAutority($event)">
+                                        </td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>{{autority.autority}}</td>
+                                   </tr>
+                               </table>     
+                        </div>
+                        <a class="btn btn-primary btn-user btn-block" (click) ="ajouter()">
+                            Ajouter
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
